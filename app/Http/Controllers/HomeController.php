@@ -26,7 +26,8 @@ class HomeController extends Controller
     {
         // 
         $events = Event::all()->sortByDesc('id');
-        return view('home', compact('events'));
+        $myEvents = Event::where('user_id', auth()->user()->id)->get();
+        return view('home', compact('events', 'myEvents'));
     }
 
 
